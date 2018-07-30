@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/demo/personas").hasAnyRole("ADMIN")
 			.antMatchers("/inicio").hasAnyRole("APROBADOR")
 			.and().httpBasic()
-			.and().formLogin().loginPage("/login").failureUrl("/403").permitAll()//static/login.html
+			.and().formLogin().loginPage("/login").failureUrl("/denegado").permitAll()//static/login.html
 			.defaultSuccessUrl("/inicio");
 //			.and().logout().permitAll();
 //		http.logout().logoutUrl("/logout");	

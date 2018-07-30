@@ -29,6 +29,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("login.html");
         registry.addViewController("/salir").setViewName("logout.html");
         registry.addViewController("/welcome").setViewName("welcome.html");
+        registry.addViewController("/denegado").setViewName("denegado.html");
         registry.addViewController("/403").setViewName("403.html");
         //registry.addViewController("/inicio2").setViewName("/static/inicio.html");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
