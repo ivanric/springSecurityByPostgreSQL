@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,14 +13,20 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
+import app.TransactionFilter;
 
 @Configuration
 //@EnableAutoConfiguration
 @EnableWebSecurity
+//@Order(1)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired 
 	UserDetailsService userDetailsService;//Interfaz donde se modificara a los Usuarios
+	
+
 	
 //	@Autowired
 //	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {//COMO CONFIGURAR A LOS USUARIOS
@@ -49,10 +56,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		http.logout().logoutUrl("/logout");	
 //		http.exceptionHandling().accessDeniedPage("/403.html");
 		http.exceptionHandling().accessDeniedPage("/403");
+		
+//		http.addFilterAfter(new TransactionFilter(), BasicAuthenticationFilter.class);
 	}
 //	@Bean
 //	public PasswordEncoder passwordEncoder() {
 //		return new BCryptPasswordEncoder();
 //	}
+	
 
 }
